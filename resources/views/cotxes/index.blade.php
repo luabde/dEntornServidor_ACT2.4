@@ -44,6 +44,17 @@
             background-color: #000;
             color: #fff;
         }
+        button {
+            padding: 10px 20px;
+            background-color: #ccc;
+            color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #000;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +70,7 @@
             <th>Model</th>
             <th>Clinidrada</th>
             <th>Potència</th>
+            <th>Accions</th>
         </tr>
 
         <!-- Es recorren els cotxes que s'han passat a la vista -->
@@ -68,6 +80,13 @@
                 <td>{{ $cotxe->model }}</td>
                 <td>{{ $cotxe->cilindrada }}</td>
                 <td>{{ $cotxe->potencia }}</td>
+                <td>
+                    <form action="{{ route('cotxes.destroy', $cotxe->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>

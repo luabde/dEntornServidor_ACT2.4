@@ -30,4 +30,11 @@ class CotxeController extends Controller
         $cotxes = Cotxe::all(); // Obtenim tots els cotxes de la base de dades
         return view('cotxes.index', compact('cotxes')); // Cridem a la vista index, passant-li els cotxes que hem obtingut
     }
+
+    // Elimina un cotxe de la base de dades
+    public function destroy(Cotxe $cotxe){
+        $cotxe->delete(); // Eliminem el cotxe indicat
+
+        return redirect()->route('cotxes.index')->with('success', 'El cotxe ha estat eliminat correctament'); // Redirigeix al index amb missatge de confirmació
+    }
 }
